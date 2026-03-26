@@ -18,7 +18,7 @@ void HAL_RB_Init(RingBuffer_t *rb);
 bool HAL_RB_Push(RingBuffer_t *rb, uint8_t byte);
 bool HAL_RB_Pop(RingBuffer_t *rb, uint8_t *byte);
 
-void HAL_Get_Mock_Sensor_Data(uint8_t *batt, uint16_t *alt);
-void HAL_Inject_Interference(uint8_t *buffer, uint8_t len);
+void HAL_Get_Mock_Sensor_Data(uint8_t *battery, uint16_t *altitude);
+void HAL_Inject_Interference(uint8_t *buffer, uint8_t length);
 
 #endif // !BITSTRAIT_HAL_H

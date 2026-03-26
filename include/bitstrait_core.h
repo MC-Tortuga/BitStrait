@@ -14,7 +14,6 @@ typedef struct {
   uint8_t status;
 } BitStrait_Telemetry_t;
 
-uint8_t BitStrait_ComputeCRC(const uint8_t *data, uint8_t length);
 void BitStrait_Pack(const BitStrait_Telemetry_t *in, uint8_t *out);
 bool BitStrait_Unpack(const uint8_t *in, BitStrait_Telemetry_t *out);
 

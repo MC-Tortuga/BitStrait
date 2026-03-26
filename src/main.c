@@ -1,4 +1,3 @@
-#define _DEFAULT_SOURCE
 #include "../include/bitstrait_core.h"
 #include "../include/bitstrait_hal.h"
 #include "../include/bitstrait_ui.h"
@@ -11,13 +10,14 @@
 #include <unistd.h>
 
 int main() {
-  srand(time(NULL));
+  srand((unsigned int)time(NULL));
   UI_Init();
+
   RingBuffer_t rx_ring;
   HAL_RB_Init(&rx_ring);
 
-  BitStrait_Telemetry_t tx = {100, 200, 0x0F}; // Mock Sensor Source
-  BitStrait_Telemetry_t rx = {0};              // Decoded Destination
+  BitStrait_Telemetry_t tx = {100, 200, 0}; // Mock Sensor Source
+  BitStrait_Telemetry_t rx = {0, 0, 0};     // Decoded Destination
 
   uint8_t legacy_buffer[FRAME_SIZE];   // V1 Raw Frame
   uint8_t cobs_wire[FRAME_SIZE + 2];   // V2 Consistent Overhead Byte Stuffing
@@ -25,11 +25,12 @@ int main() {
   uint8_t scratch_pad[FRAME_SIZE + 2]; // Decoder Workspace
 
   size_t parser_idx = 0;
-  size_t enc_length = 0;
   bool is_valid = true;
   bool fault_mode = false;
 
   while (1) {
+    size_t enc_length = 0;
+
     int ch = getch();
     if (ch == 'q')
       break;
