@@ -1,3 +1,4 @@
+#define _DEFAULT_SOURCE
 #include "../include/bitstrait_core.h"
 #include "../include/bitstrait_hal.h"
 #include "../include/bitstrait_ui.h"
