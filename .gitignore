@@ -1,3 +1,21 @@
+# Compiled Binaries
+bin/
+bitstrait
+bitstrait_bin
+
+# Objects and Reports
+*.txt
+
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDEs (Optional but helpful)
+.vscode/
+.idea/
+*.swp
+
 # Prerequisites
 *.d
 

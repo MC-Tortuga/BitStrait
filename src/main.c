@@ -9,7 +9,7 @@
 #include <time.h>
 #include <unistd.h>
 
-int main() {
+int main(void) {
   srand((unsigned int)time(NULL));
   UI_Init();
 

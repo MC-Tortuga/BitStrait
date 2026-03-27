@@ -67,7 +67,32 @@ clang -Wall -Iinclude -g src/*.c -o bitstrait -lncurses
 * **[F]**: Toggle Bit-Flip Fault Injection.
 * **[Q]**: Graceful Shutdown and UI Cleanup.
 
+------
+
+## 🛡️ NASA "Power of 10" Compliance
+To ensure mission-critical reliability, this project was refactored to satisfy the **JPL Institutional Coding Standard for the C Programming Language**:
+
+1.  **Simple Control Flow:** No `goto`, `setjmp`, or recursion.
+2.  **Fixed Loop Bounds:** All loops have a verifiable upper bound to prevent infinite hangs.
+3.  **No Dynamic Memory:** Zero use of `malloc` or `free`. All buffers are stack-allocated.
+4.  **Minimal Function Length:** Functions are modular and focused on a single task.
+5.  **Strict Assertion Density:** Critical pointers and indices are guarded by `assert()` and boundary checks.
+6.  **Minimal Data Scope:** Variables are declared at the lowest possible scope to prevent state leakage.
+7.  **Check Returns:** All sub-function return values (like COBS decode length) are validated.
+8.  **Limited Preprocessor:** Macros are used only for constants, not for complex code generation.
+9.  **Pointer Safety:** No function pointers or hidden dereferencing.
+10. **Static Analysis:** 100% clean audit via `cppcheck --enable=all --inconclusive`.
+
 ---
+
+## 🗺️ Future Roadmap
+BitStrait is designed to evolve from a local simulation into a production-ready aerospace communication stack:
+
+* **Multi-Node Addressing:** Implementing a Source/Destination ID header within the COBS payload to allow a single Ground Station to manage a swarm of sensors.
+* **Forward Error Correction (FEC):** Integrating Hamming Codes or Reed-Solomon encoding to *repair* corrupted bits in high-interference environments, reducing the need for retransmissions.
+
+* **Hardware-In-The-Loop (HITL):** Porting `bitstrait_hal.c` to STM32 (UART) or ESP32 to test protocol jitter and latency on real silicon.
+* **Fragmentation & Reassembly:** Adding a Sequence Number and "More-Fragments" bit to allow the transmission of large data logs across small, MTU-limited COBS frames.
 
 ## License
 Copyright (C) 2026
